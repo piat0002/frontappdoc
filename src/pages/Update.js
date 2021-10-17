@@ -4,11 +4,30 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+import {Form,Button,FloatingLabel} from "react-bootstrap";
 //compenent
 import Navabar from '../components/Navbar'
 const Update = () => {
   const [match,setmatch] = useState(useRouteMatch());
   const [idm,setid] = useState(useParams());
+
+  const fetchupdate = (e)=>{
+        fetch('http://localhost:3000/api/user/'+idm.id,{
+            method: 'PUT',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({"prenom": e.target[1].value,
+                                    'nom': e.target[0].value})
+        })
+            .then(response=>{
+                console.log(response)
+                document.location.href='/description/'+idm.id})
+  }
+  const  submit = (e) => {
+    e.preventDefault();
+    fetchupdate(e)
+  }
   return (
     <>
     <Navabar id={idm.id}>
@@ -24,7 +43,23 @@ const Update = () => {
 }'
      * 
     */}
-    modifier {idm.id}
+    <h1> Modifier</h1>
+    {/* modifier {idm.id} */}
+    <Form onSubmit={(e)=>{submit(e)}}>
+            <Form.Group className="mb-3" controlId="nom">
+                <Form.Label>Nom</Form.Label>
+                <Form.Control type="Nom" placeholder="Enter Nom" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="prenom">
+                <Form.Label>prenom</Form.Label>
+                <Form.Control type="prenom" placeholder="Enter prenom" />
+            </Form.Group>
+        
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+        </Form>
+
     </>
   );
 }
