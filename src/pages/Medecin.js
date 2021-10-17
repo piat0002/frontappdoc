@@ -38,7 +38,12 @@ const Medecin = () => {
     <h1>
       bonjour { typeof user.nom === 'undefined' ? '' : user.nom} {typeof user.prenom === 'undefined' ? '' : user.prenom }
     </h1>
-    <p> {typeof user.id === 'undefined' ? '' : 'ton identifiant est: ' + user.id}</p>
+    <h2> {typeof user.id === 'undefined' ? '' : 'ton identifiant est: ' + user.id}</h2>
+    <p>{typeof user.id === 'undefined' ? '' : 'tarif: ' + user.tarif}</p>
+    <p>{typeof user.id === 'undefined' ? '' : 'horaire: ' + user.horaire}</p>
+    <p>{typeof user.id === 'undefined' ? '' : 'formation: ' + user.formation}</p>
+
+    <p> {typeof user.id === 'undefined' ? '' : 'langue: ' + user.langue}</p>
     </>
   );
 }

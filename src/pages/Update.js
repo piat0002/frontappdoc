@@ -18,7 +18,8 @@ const Update = () => {
                 'Content-Type':'application/json'
             },
             body: JSON.stringify({"prenom": e.target[1].value,
-                                    'nom': e.target[0].value})
+                                    'nom': e.target[0].value,
+                                    'tarif': e.target[2].value})
         })
             .then(response=>{
                 console.log(response)
@@ -54,7 +55,9 @@ const Update = () => {
                 <Form.Label>prenom</Form.Label>
                 <Form.Control type="prenom" placeholder="Enter prenom" />
             </Form.Group>
-        
+            <FloatingLabel controlId="tarif" label="Tarif" className="mb-3">
+                <Form.Control as="textarea" placeholder="tarif" />
+            </FloatingLabel>
             <Button variant="primary" type="submit">
                 Submit
             </Button>
