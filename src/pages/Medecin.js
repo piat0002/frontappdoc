@@ -9,6 +9,22 @@ import Navabar from '../components/Navbar'
 const Medecin = () => {
   const [match,setmatch] = useState(useRouteMatch());
   const [idm,setid] = useState(useParams());
+  const [user,setuser] = useState({})
+  const getdata = () =>
+  {
+    fetch("http://localhost:3000/api/user/"+idm.id)
+      .then((response)=>{
+        //console.log(response)
+        return response.json()
+      })
+      .then(json=>{console.log(json)
+        setuser(json)
+      })
+  }
+  React.useEffect(() => {
+    getdata();
+  },[]);
+
   return (
     <>
     <Navabar id={idm.id}>
@@ -16,8 +32,12 @@ const Medecin = () => {
     {/**todo description fetch get
      * 
      * exemple curl
+     * curl --location --request GET 'http://localhost:3000/api/user/1'
     */}
-    description {idm.id}
+    {/* description {idm.id} */}
+    <h1>
+      bonjour { typeof user.nom === 'undefined' ? '' : user.nom} {typeof user.prenom === 'undefined' ? '' : user.prenom }
+    </h1>
     </>
   );
 }
