@@ -23,6 +23,25 @@ const Inscription = () => {
         }'
         // faire une redirection
          */
+
+        fetch('http://localhost:3000/api/user', {
+                method: 'POST',
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({nom: e.target[0].value,
+                     prenom: e.target[1].value,
+                     photo:'chemin',
+                     tarif: e.target[3].value,
+                     modalite: e.target[4].value,
+                     modePaiement: e.target[5].value,
+                     horaire: e.target[6].value,
+                     formation: e.target[7].value,
+                     langue: e.target[8].value})
+            })
+            .then(response=>{return response.json()})
+            .then(json=>{document.location.href='/description/'+json.id})
         console.log('lol');
         console.log(e);
     }
